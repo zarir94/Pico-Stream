@@ -2,12 +2,12 @@
   export let title;
   export let img;
   export let rating;
-  export let cls;
+  export let cls = '';
 </script>
 <div class="item {cls}">
   <div class="item-img">
-    <figure class="image is9by16">
-      <img src="{img.replace('original', 'w185')}" alt="{title}">
+    <figure class="image is-2by3">
+      <img loading="lazy" src="{img.replace('original', 'w185')}" alt="{title}">
     </figure>
   </div>
   <div class="on-hover">
@@ -16,6 +16,21 @@
   </div>
 </div>
 <style>
+  .item, .item-img, figure, img {
+    width: 100%;
+    height: 100%;
+  }
+  img[loading="lazy"] {
+    animation: cs-sk-bg 2s infinite;
+  }
+  @keyframes cs-sk-bg {
+    0%, 100% {
+      background-color: rgba(53, 58, 70, 1);
+    }
+    50% {
+      background-color: rgba(53, 58, 70, .5)
+    }
+  }
   .on-hover {
     opacity: 0;
     visibility: hidden;
