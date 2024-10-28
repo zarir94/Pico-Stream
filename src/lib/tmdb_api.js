@@ -14,7 +14,6 @@ function getDateAgo(days=1) {
 
 export async function getLatestItems(type = 'movie', page = 1) {
 	`type is either 'movie' or 'tv'`;
-	console.log(`Fetching Data ${Math.round(Math.random() * 100000)}...`);
 	let yesterday = getDateAgo();
 	let r = await fetch(
 		`https://api.themoviedb.org/3/discover/${type}?include_adult=true&include_video=false&language=en-US&page=${page}&sort_by=primary_release_date.desc&release_date.lte=${yesterday}&vote_average.gte=1&vote_count.gte=300`,

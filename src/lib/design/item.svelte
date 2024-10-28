@@ -28,7 +28,7 @@
       background-color: rgba(53, 58, 70, 1);
     }
     50% {
-      background-color: rgba(53, 58, 70, .5)
+      background-color: rgba(53, 58, 70, .5);
     }
   }
   .on-hover {

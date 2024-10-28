@@ -1,5 +1,6 @@
 <script>
 	import Item from '$lib/design/item.svelte';
+	import '../bulma.css';
   export let data;
 </script>
 <svelte:head>
