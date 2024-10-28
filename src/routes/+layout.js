@@ -1,2 +1,2 @@
 import '../bulma.css';
-import '../bs-icon.css';
+// import '../bs-icon.css';

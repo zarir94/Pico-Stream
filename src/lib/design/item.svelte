@@ -12,7 +12,7 @@
   </div>
   <div class="on-hover">
     <h5 class="ititle is-size-6">{title}</h5>
-    <span class="irating is-size-6">{rating}</span>
+    <span class="irating is-size-6"><i class="bi bi-star"></i> {rating}</span>
   </div>
 </div>
 <style>
