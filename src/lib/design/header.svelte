@@ -1,5 +1,6 @@
 <script>
   import menu from "$lib/menu.js";
+  let is_mmon = false;
 </script>
 
 <nav class="navbar has-background-black-ter has-shadow" aria-label="Navbar">
@@ -8,7 +9,7 @@
       <a class="navbar-item" href="/">
         <h3 class="title is-4" style="font-weight: 700;">Pico Stream</h3>
       </a>
-      <button on:click={function(){document.getElementById('navbarBasic').classList.toggle('is-active')}} class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
+      <button on:click={()=>is_mmon = is_mmon ? false : true} class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -16,7 +17,7 @@
       </button>
     </div>
     
-    <div id="navbarBasic" class="navbar-menu">
+    <div id="navbarBasic" class="navbar-menu {is_mmon ? 'is-active' : ''}">
       <div class="navbar-start">
         {#each Object.entries(menu) as [title, link]}
           <a class="navbar-item" href="{link}">{title}</a>
