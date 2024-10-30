@@ -27,7 +27,7 @@
     color: rgb(255, 187, 0);
   }
   img[loading="lazy"] {
-    animation: cs-sk-bg 2s infinite;
+    animation: cs-sk-bg 1s infinite;
   }
   @keyframes cs-sk-bg {
     0%, 100% {
