@@ -3,8 +3,9 @@
   export let img;
   export let rating;
   export let cls = '';
+  export let style = '';
 </script>
-<div class="item {cls}">
+<div class="item {cls}" style="{style}">
   <div class="item-img">
     <figure class="image is-2by3">
       <img loading="lazy" src="{img.replace('original', 'w185')}" alt="{title}">
