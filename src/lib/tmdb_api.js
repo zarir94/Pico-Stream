@@ -21,11 +21,29 @@ export async function getLatestItems(type = 'movie', page = 1) {
 	)
 		.then((res) => res.json())
 		.then((json) => json);
-	let movies = r.results.map((i) => {return {
+	let items = r.results.map((i) => {return {
 		id: i.id,
 		title: i.title || i.name,
 		img: 'https://image.tmdb.org/t/p/original/' + i.poster_path,
 		rating: Math.round(i.vote_average * 10) / 10
 	};})
-	return movies;
+	return items;
+}
+
+export async function getSearchItems(type = 'movie', page = 1, q = '') {
+	`type is either 'movie' or 'tv'`;
+	let today = getDateAgo(0);
+	let r = await fetch(
+		`https://api.themoviedb.org/3/search/${type}?include_adult=true&language=en-US&page=${page}&query=${q}`,
+		{ method: 'GET', headers: res_headers }
+	)
+		.then((res) => res.json())
+		.then((json) => json);
+	let items = r.results.map((i) => {return {
+		id: i.id,
+		title: i.title || i.name,
+		img: 'https://image.tmdb.org/t/p/original/' + i.poster_path,
+		rating: Math.round(i.vote_average * 10) / 10
+	};})
+	return items;
 }

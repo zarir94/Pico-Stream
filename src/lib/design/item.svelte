@@ -28,6 +28,7 @@
   }
   img[loading="lazy"] {
     animation: cs-sk-bg 1s infinite;
+    color: transparent;
   }
   @keyframes cs-sk-bg {
     0%, 100% {

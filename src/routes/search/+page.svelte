@@ -3,15 +3,15 @@
   export let data;
 </script>
 <svelte:head>
-	<title>Pico Streams - A Simple Streaming Site</title>
+	<title>Results for "{data.q}" - Pico Streams</title>
 </svelte:head>
-<h1 class="title is-4" style="font-weight: 700;">Latest Movies</h1>
+<h1 class="title is-4" style="font-weight: 700;">Movies on "{data.q}"</h1>
 <div class="grid is-col-min-6">
 	{#each data.movies as m (m.id)}
 		<Item title={m.title} rating={m.rating} img={m.img}/>
 	{/each}
 </div>
-<h1 class="title is-4" style="font-weight: 700;">Latest TV Series</h1>
+<h1 class="title is-4" style="font-weight: 700;">TV Series on "{data.q}"</h1>
 <div class="grid is-col-min-6">
 	{#each data.tvs as t (t.id)}
 		<Item title={t.title} rating={t.rating} img={t.img}/>
