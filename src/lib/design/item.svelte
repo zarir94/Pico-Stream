@@ -1,14 +1,21 @@
 <script>
+  export let id;
+  export let type;
   export let title;
   export let img;
   export let rating;
   export let cls = '';
   export let style = '';
+  export let empty = false;
 </script>
-<div class="item {cls}" style="{style}">
+{#if empty}
+<div class="{cls}" style="visibility: hidden;{style}">
+</div>
+{:else}
+<a role="button" class="item {cls}" href="/watch-{type}-{id}" style="{style}">
   <div class="item-img">
     <figure class="image is-2by3">
-      <img loading="lazy" src="{img.replace('original', 'w185')}" alt="{title}">
+      <img loading="lazy" src="{img ? img.replace('original', 'w185') : '/noimg.jpg'}" alt="{title}">
     </figure>
   </div>
   <div class="on-hover">
@@ -18,13 +25,14 @@
         <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
       </svg> {rating}</span>
   </div>
-</div>
+</a>
+{/if}
 <style>
   .item, .item-img, figure, img {
     width: 100%;
     height: 100%;
   }
-  svg {
+  .irating svg {
     color: rgb(255, 187, 0);
   }
   img[loading="lazy"] {
@@ -56,6 +64,7 @@
     border-radius: 7px;
     overflow: hidden;
     transition: all linear 300ms;
+    display: block;
   }
   .item:hover {
     box-shadow: 0px 0px 4px 1px #02f7e38f;

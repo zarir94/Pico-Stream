@@ -1,19 +1,21 @@
 <script>
 	import Item from '$lib/design/item.svelte';
   export let data;
+	$: movies = data.movies;
+	$: tvs = data.tvs;
 </script>
 <svelte:head>
-	<title>Results for "{data.q}" - Pico Streams</title>
+	<title>Results for "{data.q}" - Pico Stream</title>
 </svelte:head>
 <h1 class="title is-4" style="font-weight: 700;">Movies on "{data.q}"</h1>
 <div class="grid is-col-min-6">
-	{#each data.movies as m (m.id)}
-		<Item title={m.title} rating={m.rating} img={m.img} style="max-width: 12rem;"/>
+	{#each movies as m}
+		<Item id={m.id} type="movie" title={m.title} rating={m.rating} img={m.img} empty={m.empty}/>
 	{/each}
 </div>
 <h1 class="title is-4" style="font-weight: 700;">TV Series on "{data.q}"</h1>
 <div class="grid is-col-min-6">
-	{#each data.tvs as t (t.id)}
-		<Item title={t.title} rating={t.rating} img={t.img} style="max-width: 12rem;"/>
+	{#each tvs as t}
+		<Item id={t.id} type="tv" title={t.title} rating={t.rating} img={t.img} empty={t.empty}/>
 	{/each}
 </div>

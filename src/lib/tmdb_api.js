@@ -24,7 +24,7 @@ export async function getLatestItems(type = 'movie', page = 1) {
 	let items = r.results.map((i) => {return {
 		id: i.id,
 		title: i.title || i.name,
-		img: 'https://image.tmdb.org/t/p/original/' + i.poster_path,
+		img: i.poster_path ? 'https://image.tmdb.org/t/p/original' + i.poster_path : null,
 		rating: Math.round(i.vote_average * 10) / 10
 	};})
 	return items;
@@ -42,8 +42,32 @@ export async function getSearchItems(type = 'movie', page = 1, q = '') {
 	let items = r.results.map((i) => {return {
 		id: i.id,
 		title: i.title || i.name,
-		img: 'https://image.tmdb.org/t/p/original/' + i.poster_path,
+		img: i.poster_path ? 'https://image.tmdb.org/t/p/original' + i.poster_path : null,
 		rating: Math.round(i.vote_average * 10) / 10
 	};})
 	return items;
+}
+
+export async function getItem(type = 'movie', id = 1) {
+	`type is either 'movie' or 'tv'`;
+	let r = await fetch(
+		`https://api.themoviedb.org/3/${type}/${parseInt(id)}?language=en-US`,
+		{ method: 'GET', headers: res_headers }
+	)
+		.then((res) => res.json())
+		.then((json) => json);
+	if (r.status_code == 34) {return {error: 404}};
+	let item = {
+		id: r.id,
+		imdb_id: r.imdb_id,
+		bg_img: r.backdrop_path ? 'https://image.tmdb.org/t/p/original' + r.backdrop_path : null,
+		img: r.poster_path ? 'https://image.tmdb.org/t/p/original' + r.poster_path : null,
+		genres: r.genres.map((e) => e.name),
+		desc: r.overview,
+		release: r.release_date,
+		tag: r.tagline,
+		title: r.title,
+		rating: Math.round(r.vote_average * 10) / 10
+	};
+	return item;
 }
