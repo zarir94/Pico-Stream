@@ -6,6 +6,7 @@
   let search_value = $page.url.pathname.indexOf('/search')!=-1 && $page.url.searchParams.has('q') ? $page.url.searchParams.get('q') : '';
   afterNavigate(()=>{
     search_value = $page.url.pathname.indexOf('/search')!=-1 && $page.url.searchParams.has('q') ? $page.url.searchParams.get('q') : '';
+    is_mmon = false;
   })
 </script>
 
