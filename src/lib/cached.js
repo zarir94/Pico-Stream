@@ -22,22 +22,22 @@ function readJSON(name) {
 
 const data = {
 	getMovies: async function (update = false) {
-    if (!fs.existsSync('tmp/cachedMovies.json') || update) {
+    if (!fs.existsSync('/tmp/cachedMovies.json') || update) {
       console.log(`Fetching Data ${Math.round(Math.random() * 100000)}...`);
       let cachedMovies = await Promise.all([ getLatestItems('movie', 1), getLatestItems('movie', 2), getLatestItems('movie', 3) ]);
       cachedMovies = cachedMovies.flat();
-      await writeJSON('tmp/cachedMovies.json', cachedMovies);
+      await writeJSON('/tmp/cachedMovies.json', cachedMovies);
     }
-    return await readJSON('tmp/cachedMovies.json');
+    return await readJSON('/tmp/cachedMovies.json');
   },
   getTVs: async function (update = false) {
-    if (!fs.existsSync('tmp/cachedTVs.json') || update) {
+    if (!fs.existsSync('/tmp/cachedTVs.json') || update) {
       console.log(`Fetching Data ${Math.round(Math.random() * 100000)}...`);
       let cachedTVs = await Promise.all([ getLatestItems('tv', 1), getLatestItems('tv', 2), getLatestItems('tv', 3) ]);
       cachedTVs = cachedTVs.flat();
-      await writeJSON('tmp/cachedTVs.json', cachedTVs);
+      await writeJSON('/tmp/cachedTVs.json', cachedTVs);
     }
-    return await readJSON('tmp/cachedTVs.json');
+    return await readJSON('/tmp/cachedTVs.json');
   },
 };
 
