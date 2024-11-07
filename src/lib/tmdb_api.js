@@ -66,7 +66,7 @@ export async function getItem(type = 'movie', id = 1) {
 		desc: r.overview,
 		release: r.release_date,
 		tag: r.tagline,
-		title: r.title,
+		title: r.title || r.name,
 		rating: Math.round(r.vote_average * 10) / 10
 	};
 	return item;
