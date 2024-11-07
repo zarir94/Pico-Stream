@@ -60,6 +60,7 @@ export async function getItem(type = 'movie', id = 1) {
 	let item = {
 		id: r.id,
 		imdb_id: r.imdb_id,
+		type: type,
 		bg_img: r.backdrop_path ? 'https://image.tmdb.org/t/p/original' + r.backdrop_path : null,
 		img: r.poster_path ? 'https://image.tmdb.org/t/p/original' + r.poster_path : null,
 		genres: r.genres.map((e) => e.name),
@@ -67,7 +68,21 @@ export async function getItem(type = 'movie', id = 1) {
 		release: r.release_date,
 		tag: r.tagline,
 		title: r.title || r.name,
-		rating: Math.round(r.vote_average * 10) / 10
+		rating: Math.round(r.vote_average * 10) / 10,
+		seasons: type == 'tv' ? r.seasons.map((e) => e.season_number) : []
 	};
 	return item;
 }
+
+export async function getEpisodes(tvID, seasonNo) {
+	let r = await fetch(
+		`https://api.themoviedb.org/3/tv/${tvID}/season/${seasonNo}?language=en-US`,
+		{ method: 'GET', headers: res_headers }
+	)
+		.then((res) => res.json())
+		.then((json) => json);
+	if (r.status_code == 34) {return {error: 404}};
+	let epis = r.episodes.map((e)=>{return { no: e.episode_number, name: e.name, rating: Math.round(e.vote_average * 10) / 10 };});
+	return epis;
+}
+

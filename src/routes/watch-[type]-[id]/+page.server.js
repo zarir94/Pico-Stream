@@ -1,5 +1,5 @@
-import { getItem } from "$lib/tmdb_api.js";
-import { Server, error } from "@sveltejs/kit";
+import { getItem, getEpisodes } from "$lib/tmdb_api.js";
+import { error } from "@sveltejs/kit";
 
 function choice(array) {
   return array[Math.floor(Math.random() * array.length)];
@@ -27,17 +27,26 @@ export async function load({params, url}) {
     server = 1;
   }
   let s = url.searchParams.get('s');
-  s = parseInt(s) ? parseInt(s) : 1;
-  let e = url.searchParams.get('e');
-  e = parseInt(e) ? parseInt(e) : 1;
+  s = item.seasons.indexOf(parseInt(s)) != -1 ? parseInt(s) : 1;
+
+  let episodes = [];
+  let e = 1;
+  if (type == 'tv') {
+    episodes = await getEpisodes(item.id, s);
+    e = url.searchParams.get('e');
+    e = episodes.map(e => e.no).indexOf(parseInt(e)) != -1 ? parseInt(e) : 1;
+  };
 
   // VIDEO URL
-  let vidURL = SERVERS[Object.keys(SERVERS)[server - 1]](item.imdb_id || item.id, type, s, e);
+  let vidURL = SERVERS[Object.keys(SERVERS)[server - 1]]((item.imdb_id || item.id) + '', type, s, e);
 
   // ADD MORE DATA
   item.vidURL = vidURL;
   item.servers = Object.fromEntries(Object.entries({...Object.keys(SERVERS)}).map(([k, v]) => [v, k]));;
   item.currentServer = Object.keys(SERVERS)[server - 1];
+  item.currentSeason = s;
+  item.currentEpisode = e;
+  item.episodes = episodes;
 
   return item;
 }

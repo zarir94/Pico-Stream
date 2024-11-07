@@ -27,12 +27,26 @@
   <h3 class="title is-size-3">{data.title}</h3>
   <!-- sandbox="allow-scripts allow-same-origin" -->
   <iframe class="main-frame is-rounded" src="{data.vidURL}" title="{data.title}" frameborder="0"></iframe>
-  <h4 class="has-text-centered title is-4 my-4">Choose any server</h4>
-  <div class="is-flex is-justify-content-center is-flex-wrap-wrap is-gap-2 my-4">
+  <h4 class="has-text-centered title is-4 my-4">Servers</h4>
+  <div class="is-flex is-justify-content-center is-flex-wrap-wrap is-gap-1 my-4">
     {#each Object.entries(data.servers) as [name, i]}
-      <button on:click={submitForm} class="button is-dark is-medium {data.currentServer == name ? 'is-primary' : 'is-info'}" {disabled} type="submit" name="server" value="{parseInt(i) + 1}">{name}</button>
+      <button on:click={submitForm} class="button is-dark is-medium {data.currentServer == name ? 'is-primary' : 'is-dark'}" {disabled} type="submit" name="server" value="{parseInt(i) + 1}">{name}</button>
     {/each}
   </div>
+  {#if data.type == 'tv'}
+    <h4 class="has-text-centered title is-4 my-4">Seasons</h4>
+    <div class="is-flex is-justify-content-center is-flex-wrap-wrap is-gap-1 my-4">
+      {#each data.seasons as s}
+      <button on:click={submitForm} class="button is-dark is-normal {data.currentSeason == s ? 'is-primary' : 'is-dark'}" {disabled} type="submit" name="s" value="{s}">{s}</button>
+      {/each}
+    </div>
+    <h4 class="has-text-centered title is-4 my-4">Episodes</h4>
+    <div class="grid is-col-min-8">
+      {#each data.episodes as e}
+      <button on:click={submitForm} class="button is-dark is-normal {data.currentEpisode == e.no ? 'is-primary' : 'is-dark'}" {disabled} type="submit" name="e" value="{e.no}">{e.no}. {e.name} {e.rating}</button>
+      {/each}
+    </div>
+  {/if}
 </div>
 </form>
 <style>
