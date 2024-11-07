@@ -23,7 +23,7 @@
 	<title>Watch {data.title} Free - Pico Stream</title>
 </svelte:head>
 <form on:submit|preventDefault={e=>e}>
-<div class="block has-background-black-ter has-shadow p-6 is-rounded">
+<div class="block has-background-black-ter has-shadow p-5 is-rounded">
   <h3 class="title is-size-3">{data.title}</h3>
   <!-- sandbox="allow-scripts allow-same-origin" -->
   <iframe class="main-frame is-rounded" src="{data.vidURL}" title="{data.title}" frameborder="0"></iframe>
