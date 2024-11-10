@@ -7,7 +7,7 @@
 </script>
 
 <Header/>
-<main class="container is-fullhd px-5 my-4">
+<main class="container is-fullhd px-2 my-4">
   <slot></slot>
 </main>
 <Footer/>

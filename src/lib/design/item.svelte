@@ -7,12 +7,13 @@
   export let cls = '';
   export let style = '';
   export let empty = false;
+  export let useflex = false;
 </script>
 {#if empty}
 <div class="{cls}" style="visibility: hidden;{style}">
 </div>
 {:else}
-<a role="button" class="item {cls}" href="/watch-{type}-{id}" style="{style}">
+<a role="button" class="item {cls} {useflex ? 'flex-item' : ''}" href="/watch-{type}-{id}" style="{style}">
   <div class="item-img">
     <figure class="image is-2by3">
       <img loading="lazy" src="{img ? img.replace('original', 'w185') : '/noimg.jpg'}" alt="{title}">
@@ -28,6 +29,9 @@
 </a>
 {/if}
 <style>
+  .flex-item {
+		width: calc(100% / var(--rows, 5) - 0.75rem) !important;
+	}
   .item, .item-img, figure, img {
     width: 100%;
     height: 100%;
