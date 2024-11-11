@@ -30,9 +30,14 @@
 {/if}
 <style>
   .flex-item {
-		width: calc(100% / var(--rows, 5) - 0.75rem) !important;
+		width: calc(100% / var(--rows, 5) - 0.75rem);
 	}
-  .item, .item-img, figure, img {
+  @supports (display: grid) {
+    .flex-item {
+      width: auto;
+    }
+  }
+  .item-img, figure, img {
     width: 100%;
     height: 100%;
   }
