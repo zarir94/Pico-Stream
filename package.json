@@ -1,6 +1,6 @@
 {
 	"name": "pico-stream",
-	"version": "2.1",
+	"version": "4.7",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
