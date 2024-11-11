@@ -3,6 +3,18 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [sveltekit(), purge({ paths: ['src/**/*.{svelte,html}', 'src/lib/design/*.{svelte,html}']})]
+	plugins: [
+		sveltekit(),
+		purge({ paths: ['src/**/*.{svelte,html}', 'src/lib/design/*.{svelte,html}'] })
+	],
+	build: {
+		rollupOptions: {
+			output: {
+				entryFileNames: 'assets/[name].[hash].js',
+				chunkFileNames: 'assets/[name].[hash].js',
+				assetFileNames: 'assets/[name].[hash].[ext]'
+			}
+		}
+	}
 });
 
