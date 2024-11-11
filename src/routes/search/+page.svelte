@@ -21,16 +21,16 @@
 </div>
 <style>
 	.post-grid {
+		--gap: 0.75rem;
+		--min-w: 9rem;
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.75rem;
+		gap: var(--gap);
 	}
-	/* Add --row for all */
 	@supports (display: grid) {
 		.post-grid {
 			display: grid;
-			gap: 0.75rem;
-			grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+			grid-template-columns: repeat(auto-fit, minmax(var(--min-w), 1fr));
 			grid-template-rows: auto;
 		}
 	}
