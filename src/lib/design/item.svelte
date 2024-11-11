@@ -10,7 +10,7 @@
   export let useflex = false;
 </script>
 {#if empty}
-<div class="{cls}" style="visibility: hidden;{style}">
+<div class="item {cls} {useflex ? 'flex-item' : ''}" style="visibility: hidden;{style}">
 </div>
 {:else}
 <a role="button" class="item {cls} {useflex ? 'flex-item' : ''}" href="/watch-{type}-{id}" style="{style}">
@@ -35,6 +35,7 @@
   .item-img, figure, img {
     width: 100%;
     height: 100%;
+    flex: auto;
   }
   .irating svg {
     color: rgb(255, 187, 0);
@@ -81,11 +82,9 @@
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 50%, rgba(0,0,0,0) 90%);
     color: rgba(255, 255, 255, 0.8);
     padding: 4px 2px 3px 4px;
-    display: -webkit-box;
-    line-clamp: 1;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    word-break: break-all;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .irating {
     position: absolute;
