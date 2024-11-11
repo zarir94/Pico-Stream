@@ -10,7 +10,7 @@
   export let useflex = false;
 </script>
 {#if empty}
-<div class="item {cls} {useflex ? 'flex-item' : ''}" style="visibility: hidden;{style}">
+<div class="item button is-light is-small {cls} {useflex ? 'flex-item' : ''}" style="visibility: hidden;{style}">
 </div>
 {:else}
 <a role="button" class="item {cls} {useflex ? 'flex-item' : ''}" href="/watch-{type}-{id}" style="{style}">
@@ -35,7 +35,6 @@
   .item-img, figure, img {
     width: 100%;
     height: 100%;
-    flex: auto;
   }
   .irating svg {
     color: rgb(255, 187, 0);
