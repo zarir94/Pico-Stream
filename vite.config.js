@@ -1,4 +1,4 @@
-import purge from '@erbelion/vite-plugin-sveltekit-purgecss'
+import purge from '@erbelion/vite-plugin-sveltekit-purgecss';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
@@ -10,9 +10,9 @@ export default defineConfig({
 	build: {
 		rollupOptions: {
 			output: {
-				entryFileNames: 'assets/[name].edited[hash].js',
-				chunkFileNames: 'assets/[name].edited[hash].js',
-				assetFileNames: 'assets/[name].edited[hash].[ext]'
+				entryFileNames: 'assets2/[name].edited[hash].js',
+				chunkFileNames: 'assets2/[name].edited[hash].js',
+				assetFileNames: 'assets2/[name].edited[hash].[ext]'
 			}
 		}
 	}
