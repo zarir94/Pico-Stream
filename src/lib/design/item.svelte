@@ -29,9 +29,13 @@
 </a>
 {/if}
 <style>
-  .flex-item {
-    flex: 1 1 var(--min-w);
-	}
+  .item {
+    float: left;
+    width: calc(100% / var(--cols) - 0.75rem);
+    margin: calc(0.75rem / 2);
+    margin-top: 0px;
+    margin-bottom: 0.75rem;
+  }
   .item-img, figure, img {
     width: 100%;
     height: 100%;

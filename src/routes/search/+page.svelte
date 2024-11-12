@@ -21,17 +21,17 @@
 </div>
 <style>
 	.post-grid {
-		--gap: 0.75rem;
-		--min-w: 9rem;
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--gap);
+		--cols: 8;
+		display: list-item;
+		margin: 0 -10px;
+		list-style: none;
+		overflow: hidden;
 	}
-	@supports (display: grid) {
-		.post-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(var(--min-w), 1fr));
-			grid-template-rows: auto;
-		}
-	}
+	@media screen and (min-width: 0px) {.post-grid {--cols: 1}}
+	@media screen and (min-width: 463px) {.post-grid {--cols: 2}}
+	@media screen and (min-width: 618px) {.post-grid {--cols: 3}}
+	@media screen and (min-width: 775px) {.post-grid {--cols: 4}}
+	@media screen and (min-width: 930px) {.post-grid {--cols: 5}}
+	@media screen and (min-width: 1086px) {.post-grid {--cols: 6}}
+	@media screen and (min-width: 1243px) {.post-grid {--cols: 7}}
 </style>
