@@ -36,6 +36,23 @@
     margin-top: 0px;
     margin-bottom: 0.75rem;
   }
+  @supports not (aspect-ratio: 2/3) {
+    figure {
+      padding-top: 100%;
+      height: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    img {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
+      width: auto;
+      max-width: 100%; 
+      height: auto;
+    }
+  }
   .item-img, figure, img {
     width: 100%;
     height: 100%;
