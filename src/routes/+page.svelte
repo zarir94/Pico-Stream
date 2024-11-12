@@ -1,29 +1,6 @@
 <script>
 	import Item from '$lib/design/item.svelte';
-	import { onMount } from "svelte";
   export let data;
-
-	// function convertRemToPixels(rem) {    
-  //   return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
-	// }
-	// function onResize() {
-	// 	if (!window.onobj) {window.onobj = {}}
-	// 	[...document.querySelectorAll('.post-grid')].forEach(e=>{
-	// 		let cols = parseInt(e.clientWidth / convertRemToPixels(9 + 0.75));
-	// 		let width = window.screen.width;
-	// 		e.style.setProperty('--cols', cols)
-	// 		window.onobj[cols] = width;
-	// 		console.clear()
-	// 		console.log(window.onobj)
-	// 	})
-	// }
-	// onMount(() => {
-  //   window.addEventListener('resize', onResize);
-	// 	onResize();
-  //   return () => {
-  //     window.removeEventListener('resize', onResize);
-  //   };
-  // });
 </script>
 <svelte:head>
 	<title>Pico Stream - A Simple Streaming Site</title>
@@ -46,7 +23,6 @@
 		display: list-item;
 		margin: 0 -10px;
 		list-style: none;
-		overflow: hidden;
 	}
 	@media screen and (min-width: 0px) {.post-grid {--cols: 1}}
 	@media screen and (min-width: 463px) {.post-grid {--cols: 2}}
