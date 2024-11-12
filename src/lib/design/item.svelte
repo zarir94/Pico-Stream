@@ -16,7 +16,7 @@
 <a role="button" class="item {cls} {useflex ? 'flex-item' : ''}" href="/watch-{type}-{id}" style="{style}">
   <div class="item-img">
     <figure class="image is-2by3">
-      <img loading="lazy" src="{img ? img.replace('original', 'w185') : '/noimg.jpg'}" alt="{title}">
+      <img loading="lazy" src="{img ? img.replace('original', 'w185').replace('http://', '//').replace('https://', '//') : '/noimg.jpg'}" alt="{title}">
     </figure>
   </div>
   <div class="on-hover">
