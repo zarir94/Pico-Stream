@@ -37,16 +37,16 @@
     {/if}
   </div>
   <h4 class="has-text-centered title is-4 my-4">Servers</h4>
-  <div class="is-flex is-justify-content-center is-flex-wrap-wrap is-gap-1 my-4">
+  <div class="is-flex is-justify-content-center is-flex-wrap-wrap my-4">
     {#each Object.entries(data.servers) as [name, i]}
-      <button on:click={submitForm} class="button is-dark is-medium {data.currentServer == name ? 'is-primary' : 'is-dark'}" {disabled} type="submit" name="server" value="{parseInt(i) + 1}">{name}</button>
+      <button on:click={submitForm} class="button is-dark m-1 is-medium {data.currentServer == name ? 'is-primary' : 'is-dark'}" {disabled} type="submit" name="server" value="{parseInt(i) + 1}">{name}</button>
     {/each}
   </div>
   {#if data.type == 'tv'}
     <h4 class="has-text-centered title is-4 my-4">Seasons</h4>
-    <div class="is-flex is-justify-content-center is-flex-wrap-wrap is-gap-1 my-4">
+    <div class="is-flex is-justify-content-center is-flex-wrap-wrap my-4">
       {#each data.seasons as s}
-      <button on:click={submitForm} class="button is-dark is-normal {data.currentSeason == s ? 'is-primary' : 'is-dark'}" {disabled} type="submit" name="s" value="{s}">{s}</button>
+      <button on:click={submitForm} class="button is-dark m-1 is-normal {data.currentSeason == s ? 'is-primary' : 'is-dark'}" {disabled} type="submit" name="s" value="{s}">{s}</button>
       {/each}
     </div>
     <h4 class="has-text-centered title is-4 my-4">Episodes</h4>
