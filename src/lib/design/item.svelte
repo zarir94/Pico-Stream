@@ -38,7 +38,7 @@
   }
   @supports not (aspect-ratio: 2/3) {
     figure {
-      padding-top: 100%;
+      padding-top: 150%;
       height: 0;
       position: relative;
       overflow: hidden;
@@ -88,7 +88,7 @@
     position: relative;
     border-radius: 7px;
     overflow: hidden;
-    transition: all linear 300ms;
+    transition: box-shadow linear 300ms;
     display: block;
   }
   .item:hover {
