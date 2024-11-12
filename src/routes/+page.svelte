@@ -25,11 +25,4 @@
 		flex-wrap: wrap;
 		gap: var(--gap);
 	}
-	@supports (display: grid) {
-		.post-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(var(--min-w), 1fr));
-			grid-template-rows: auto;
-		}
-	}
 </style>
