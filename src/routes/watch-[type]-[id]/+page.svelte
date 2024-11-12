@@ -29,11 +29,13 @@
 <div class="block has-background-black-ter has-shadow py-4 px-3 is-rounded">
   <h3 class="title is-size-3">{data.title}</h3>
   <!-- sandbox="allow-scripts allow-same-origin" -->
-  {#if showisk}
+  <div class="ar-fallback">
+    {#if showisk}
     <div class="skeleton-block main-frame is-rounded" style="margin-bottom: 0px;"></div>
-  {:else}
+    {:else}
     <iframe class="main-frame has-background-grey-darker is-rounded skeleton-block" style="margin-bottom: 0px;" on:load={function () {this.classList.remove('skeleton-block')}} src="{data.vidURL}" title="{data.title}" frameborder="0" allowfullscreen></iframe>
-  {/if}
+    {/if}
+  </div>
   <h4 class="has-text-centered title is-4 my-4">Servers</h4>
   <div class="is-flex is-justify-content-center is-flex-wrap-wrap is-gap-1 my-4">
     {#each Object.entries(data.servers) as [name, i]}
@@ -60,6 +62,21 @@
   .main-frame {
     width: 100%;
     aspect-ratio: 16 / 9;
+  }
+  @supports not (aspect-ratio: 16 / 9) {
+    .ar-fallback {
+      position: relative;
+      width: 100%;
+      height: 0px;
+      padding-bottom: calc(100% * (9 / 16));
+    }
+    .main-frame {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+    }
   }
   .is-rounded {
     border-radius: 10px;
