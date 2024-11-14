@@ -1,8 +1,10 @@
 import data from '$lib/cached.js';
 
-export async function load(obj) {
+export async function load({ locals }) {
+	let { updateData, getData } = locals;
+	let [movies, tvs] = await Promise.all([data.getMovies(updateData, getData), data.getTVs(updateData, getData)]);
 	return {
-		movies: await data.getMovies(),
-		tvs: await data.getTVs(),
+		movies: movies,
+		tvs: tvs,
 	};
 }

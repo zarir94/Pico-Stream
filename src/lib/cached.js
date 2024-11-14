@@ -1,45 +1,27 @@
 import { getLatestItems } from '$lib/tmdb_api.js';
-import * as fs from "fs";
-
-const suffix = import.meta.env.PROD ? '/' : '';
-
-function writeJSON(name, obj) {
-  return new Promise((resolve, reject)=>{
-    try {  
-      fs.writeFile(suffix + name, JSON.stringify(obj), ()=>{resolve()});
-    } catch (err) {reject(err)}
-  })
-}
-
-function readJSON(name) {
-  return new Promise((resolve, reject)=>{
-    try {
-      fs.readFile(suffix + name, (err, data)=>{
-        if (err) reject(err);
-        resolve(JSON.parse(data));
-      })
-    } catch (err) {reject(err)}
-  })
-}
 
 const data = {
-	getMovies: async function (update = false) {
-    if (!fs.existsSync('tmp/cachedMovies.json') || update) {
+	getMovies: async function (updateData, getData, update = false) {
+    let prevData = await getData('movies');
+    if (!prevData || update) {
       console.log(`Fetching Data ${Math.round(Math.random() * 100000)}...`);
       let cachedMovies = await Promise.all([ getLatestItems('movie', 1), getLatestItems('movie', 2), getLatestItems('movie', 3) ]);
       cachedMovies = cachedMovies.flat();
-      await writeJSON('tmp/cachedMovies.json', cachedMovies);
+      await updateData('movies', cachedMovies);
+      return cachedMovies;
     }
-    return await readJSON('tmp/cachedMovies.json');
+    return prevData;
   },
-  getTVs: async function (update = false) {
-    if (!fs.existsSync('tmp/cachedTVs.json') || update) {
+  getTVs: async function (updateData, getData, update = false) {
+    let prevData = await getData('tvs');
+    if (!prevData || update) {
       console.log(`Fetching Data ${Math.round(Math.random() * 100000)}...`);
       let cachedTVs = await Promise.all([ getLatestItems('tv', 1), getLatestItems('tv', 2), getLatestItems('tv', 3) ]);
       cachedTVs = cachedTVs.flat();
-      await writeJSON('tmp/cachedTVs.json', cachedTVs);
+      await updateData('tvs', cachedTVs);
+      return cachedTVs;
     }
-    return await readJSON('tmp/cachedTVs.json');
+    return prevData;
   },
 };
 

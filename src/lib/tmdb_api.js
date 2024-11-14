@@ -63,13 +63,13 @@ export async function getItem(type = 'movie', id = 1) {
 		type: type,
 		bg_img: r.backdrop_path ? 'https://image.tmdb.org/t/p/original' + r.backdrop_path : null,
 		img: r.poster_path ? 'https://image.tmdb.org/t/p/original' + r.poster_path : null,
-		genres: r.genres.map((e) => e.name),
+		genres: r.genres?.map((e) => e.name),
 		desc: r.overview,
 		release: r.release_date,
 		tag: r.tagline,
 		title: r.title || r.name,
 		rating: Math.round(r.vote_average * 10) / 10,
-		seasons: type == 'tv' ? r.seasons.map((e) => e.season_number) : []
+		seasons: type == 'tv' ? r.seasons?.map((e) => e.season_number) : []
 	};
 	return item;
 }

@@ -27,6 +27,11 @@
 		list-style: none;
 		overflow: hidden;
 	}
+	.post-grid::after {
+		content: "";
+		display: table;
+		clear: both;
+	}
 	@media screen and (min-width: 0px) {.post-grid {--cols: 1}}
 	@media screen and (min-width: 463px) {.post-grid {--cols: 2}}
 	@media screen and (min-width: 618px) {.post-grid {--cols: 3}}
