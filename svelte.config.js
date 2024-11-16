@@ -1,8 +1,8 @@
 import { sveltePreprocess } from 'svelte-preprocess';
 import adapterNode from '@sveltejs/adapter-node';
-import adapterVercel from '@sveltejs/adapter-vercel';
+import adapterAuto from '@sveltejs/adapter-auto';
 
-const adapter = process.env.ADAPTER === 'vercel' ? adapterVercel : adapterNode;
+const adapter = process.env.ADAPTER === 'vercel' ? adapterAuto : adapterNode;
 
 
 /** @type {import('@sveltejs/kit').Config} */
