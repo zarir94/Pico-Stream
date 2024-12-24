@@ -54,9 +54,7 @@ export async function load({params, url, cookies}) {
 		choice([
 			'https://teraboxlinks.com/st?api=7f05f9094eff8017cbf1b8fc129e1cf9de732631',
 			'https://nanolinks.in/st?api=8beb2d34725e85743b60c738a745ac0e42cfa2b8'
-		]) +
-		'&' +
-		new URLSearchParams({ url: url.origin + item.unlockURL }).toString();
+		]) + '&url=' + url.origin + item.unlockURL;
 
   return item;
 }
