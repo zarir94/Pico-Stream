@@ -13,7 +13,7 @@ const SERVERS = {
   'MAPI': (id, type, s, e)=>{return `https://moviesapi.club/${type}/${id}` + (type == 'tv' ? `-${s}/${e}` : '')},
 }
 
-export async function load({params, url}) {
+export async function load({params, url, cookies}) {
   let id = params.id;
   let type = params.type;
   if (['movie', 'tv'].indexOf(type)==-1) {error(404)};
@@ -48,5 +48,16 @@ export async function load({params, url}) {
   item.currentEpisode = e;
   item.episodes = episodes;
 
+  item.locked = cookies.get('unlocked')!=1;
+  item.unlockURL = url.pathname + '/unlock';
+  item.unlockURL =
+		choice([
+			'https://teraboxlinks.com/st?api=7f05f9094eff8017cbf1b8fc129e1cf9de732631',
+			'https://nanolinks.in/st?api=8beb2d34725e85743b60c738a745ac0e42cfa2b8'
+		]) +
+		'&' +
+		new URLSearchParams({ url: url.origin + item.unlockURL }).toString();
+
   return item;
 }
+
