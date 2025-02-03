@@ -49,14 +49,9 @@ export async function load({params, url, cookies}) {
   item.episodes = episodes;
 
   item.locked = cookies.get('unlocked')!=1;
-  let lastVisit = cookies.get('lv');
-  let mainURL =
-		lastVisit == 'nano'
-			? 'https://teraboxlinks.com/st?api=7f05f9094eff8017cbf1b8fc129e1cf9de732631'
-			: 'https://nanolinks.in/st?api=8beb2d34725e85743b60c738a745ac0e42cfa2b8';
+  let mainURL = 'https://arolinks.com/st?api=586850b580ee1e57b387721e1bc33e4c77f1f323';
   item.unlockURL = url.pathname + '/unlock';
   item.unlockURL = mainURL + '&url=' + url.origin + item.unlockURL;
-  cookies.set('lv', mainURL.includes('nano') ? 'nano' : 'tera', { path: '/' });
 
   return item;
 }
